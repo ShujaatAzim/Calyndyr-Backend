@@ -9,5 +9,5 @@ class DayActivitiesController < ApplicationController
     @day_activity = DayActivity.find(params[:id])
     render json: @day_activity.to_json()
   end
-  
+
 end
