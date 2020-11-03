@@ -6,7 +6,7 @@ class DayActivitiesController < ApplicationController
   end
 
   def show
-    @day_activity = DayActivity.find(params[:id])
+    @day_activity = DayActivity.find_or_create_by(day_params)
     render json: @day_activity.to_json()
   end
 

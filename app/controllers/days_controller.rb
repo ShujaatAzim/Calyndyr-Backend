@@ -10,9 +10,30 @@ class DaysController < ApplicationController
     render json: DaySerializer.new(@day).to_serialized_json
   end
 
-  def find_by_date_string
-    @day = Day.find_by(date: date_string)
-    render json: DaySerializer.new(@day).to_serialized_json
+  def new
+    @day = Day.new
   end
-  
+
+  def create
+    @day = Day.create(day_params)
+    render json: @day.to_json()
+  end
+
+  def update
+    @day = Day.find(params[:id])
+    @day.update(day_params)
+    render json: @day.to_json()
+  end
+
+  def destroy
+    @day = Day.find(params[:id])
+    @day.delete
+  end
+
+  private
+
+  def day_params
+    params.require(:day).permit(:date)
+  end
+
 end
