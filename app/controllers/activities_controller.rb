@@ -9,5 +9,26 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
     render json: ActivitySerializer.new(@activity).to_serialized_json
   end
+
+  def new
+    @activity = Activity.new
+  end
+
+  def create
+    @activity = Activity.create(activity_params)
+    @activity.save
+  end
+
+  def destroy
+    @activity = Activity.find(params[:id])
+    @activity.delete
+  end
+
+  private
+
+  def activiity_params
+    params.require(:activity).permit(:name, :complete)
+  end
+  
   
 end
