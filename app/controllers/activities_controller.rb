@@ -26,9 +26,9 @@ class ActivitiesController < ApplicationController
 
   private
 
-  def activiity_params
+  def activity_params
     params.require(:activity).permit(:name, :complete)
   end
-  
+
   
 end
